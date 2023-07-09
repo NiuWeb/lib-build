@@ -11,7 +11,7 @@ npm install @bygdle/lib-build
 
 Example usage:
 ```
-lib-build -e src/index.ts -o lib/index.js -t tsconfig.build.json
+lib-build -e src/index.ts -o lib -t tsconfig.build.json
 ```
 
 Read more about the options by running:
