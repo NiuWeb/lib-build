@@ -15,12 +15,15 @@ parser.add_argument("-c", "--clear", { help: "clear the output directory before 
 parser.add_argument("-x", "--externals", { help: "name of the dependences to exclude from the bundle, comma separated" })
 parser.add_argument("-t", "--tsconfig", { help: "default tsconfig file", default: "tsconfig.json" })
 
-const args = { ...parser.parse_args() } as BuildOptions
+const parsed = parser.parse_args()
+const args = { ...parsed } as BuildOptions
 
 args.entry = join(process.cwd(), args.entry)
 args.output = join(process.cwd(), args.output)
 if (args.tsconfig) {
     args.tsconfig = join(process.cwd(), args.tsconfig)
 }
+
+args.externals = parsed.externals.split(",").map((e: string) => e.trim())
 
 build(args)
