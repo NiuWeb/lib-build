@@ -24,6 +24,6 @@ if (args.tsconfig) {
     args.tsconfig = join(process.cwd(), args.tsconfig)
 }
 
-args.externals = parsed.externals.split(",").map((e: string) => e.trim())
+args.externals = parsed.externals?.split(",").map((e: string) => e.trim()) || []
 
 build(args)
