@@ -1,5 +1,7 @@
 # lib-build
 
+[https://github.com/NiuWeb/lib-build](https://github.com/NiuWeb/lib-build)
+
 Builds a typescript library using ESBuild.
 
 Install by running:
