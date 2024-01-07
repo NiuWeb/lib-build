@@ -1,9 +1,10 @@
 import { BuildOptions, defaultOptions } from "./options"
 import { existsSync } from "fs"
-import klawSync from "klaw-sync"
-import rimraf from "rimraf"
 import { buildEsbuild } from "./esbuild"
 import { buildDeclarations } from "./declarations"
+import klawSync from "klaw-sync"
+import rimraf from "rimraf"
+import { buildBabel } from "./babel"
 
 
 /**
@@ -26,10 +27,13 @@ export async function build(opts: BuildOptions) {
     }
 
     const promises: Promise<unknown>[] = []
-
-    promises.push(buildEsbuild(opts))
     if (opts.declarations) {
         promises.push(buildDeclarations(opts))
+    }
+
+    await buildEsbuild(opts)
+    if (opts.cjs) {
+        await buildBabel(opts)
     }
 
     await Promise.all(promises)

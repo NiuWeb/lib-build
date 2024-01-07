@@ -19,6 +19,8 @@ export interface BuildOptions {
     externals?: string[]
     /** clear the output directory before build? defaults `true` */
     clear?: boolean
+    /** generate the cjs build after the esbuild */
+    cjs?: boolean
 }
 
 /**

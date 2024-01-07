@@ -14,9 +14,11 @@ parser.add_argument("-w", "--watch", { help: "run the build in watch mode?", def
 parser.add_argument("-c", "--clear", { help: "clear the output directory before build?", default: true })
 parser.add_argument("-x", "--externals", { help: "name of the dependences to exclude from the bundle, comma separated" })
 parser.add_argument("-t", "--tsconfig", { help: "default tsconfig file", default: "tsconfig.json" })
+parser.add_argument("-cjs", "--cjs", { help: "generate the cjs build after the esbuild", default: false })
 
 const parsed = parser.parse_args()
 const args = { ...parsed } as BuildOptions
+args.cjs = !!args.cjs
 
 args.entry = join(process.cwd(), args.entry)
 args.output = join(process.cwd(), args.output)
