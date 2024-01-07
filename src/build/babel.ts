@@ -8,7 +8,7 @@ export async function buildBabel(opts: BuildOptions) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const entryFilename = opts.entry.split("/").pop()!.replace(/\.tsx?$/, ".js")
     const outputFilename = join(opts.output, entryFilename)
-    const outputTransformed = outputFilename.replace(/\.js$/, ".cjs.js")
+    const outputTransformed = outputFilename.replace(/\.js$/, ".cjs")
 
     const result = await transformFileAsync(outputFilename, {
         presets: ["@babel/preset-env"]
