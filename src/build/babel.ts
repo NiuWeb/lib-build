@@ -11,18 +11,18 @@ export async function buildBabel(opts: BuildOptions) {
     const outputTransformed = outputFilename.replace(/\.js$/, ".cjs")
 
     const result = await transformFileAsync(outputFilename, {
-        presets: ["@babel/preset-env"]
+        plugins: ["@babel/plugin-transform-modules-commonjs"]
     })
-    
+
     if (!result) {
-        console.error("Error transpiling to ES5")
+        console.error("Error transpiling to CJS")
         return
     }
 
     const { code } = result
 
     if (!code) {
-        console.error("Error transpiling to ES5")
+        console.error("Error transpiling to CJS")
         return
     }
 
